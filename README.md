@@ -1,6 +1,11 @@
 > [!IMPORTANT]
 > 🌟 Stay up to date at [opendrivelab.com](https://opendrivelab.com/#news)!
 
+> [!NOTE]
+> **This is a fork** of OpenLane-V2 with added LiDAR data support and visualization capabilities.
+> See the [LiDAR Data Tutorial](#lidar-data-tutorial) section below.
+
+
 <div id="top" align="center">
 
 # OpenLane-V2
@@ -41,6 +46,7 @@ We maintain a [leaderboard](https://opendrivelab.com/challenge2023/#openlane_top
 
 
 ## Table of Contents
+- [LiDAR Data Tutorial](#lidar-data-tutorial) ⭐ **New in this fork**
 - [News](#news)
 - [Introducing `OpenLane-V2 Update`](#introducing-openlane-v2-update)
 - [Task and Evaluation](#task-and-evaluation)
@@ -48,6 +54,28 @@ We maintain a [leaderboard](https://opendrivelab.com/challenge2023/#openlane_top
 - [Getting Started](#getting-started)
 - [License & Citation](#license--citation)
 - [Related Resources](#related-resources)
+
+## LiDAR Data Tutorial
+
+This fork extends OpenLane-V2 with **LiDAR point cloud data** integration and visualization capabilities.
+
+### Quick Start
+
+An interactive Jupyter notebook tutorial is available at [`tutorials/lidar.ipynb`](tutorials/lidar.ipynb).
+
+### Download LiDAR Data
+
+- **Filename**: `openlanev2_lidar.zip`
+- **Download**: [Google Drive](https://drive.google.com/drive/folders/1tb1PM2vA57OitzfdvknVvx7hYLIQj6TK)
+- **MD5 Checksum**: `a72701458f890000fa351a6d11647034`
+
+Verify the download:
+```bash
+md5sum openlanev2_lidar.zip
+# Expected: a72701458f890000fa351a6d11647034
+```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 
 ## News
