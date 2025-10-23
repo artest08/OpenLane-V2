@@ -3,6 +3,9 @@
 
 > [!NOTE]
 > **This is a fork** of OpenLane-V2 with added LiDAR data support and visualization capabilities.
+> 
+> **Research Context**: This extension is developed as part of the study on **TopoBDA: Towards Bezier Deformable Attention for Road Topology Understanding**.
+> 
 > See the [LiDAR Data Tutorial](#lidar-data-tutorial) section below.
 
 
