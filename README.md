@@ -70,12 +70,12 @@ An interactive Jupyter notebook tutorial is available at [`tutorials/lidar.ipynb
 
 - **Filename**: `openlanev2_lidar.zip`
 - **Download**: [Google Drive](https://drive.google.com/drive/folders/1tb1PM2vA57OitzfdvknVvx7hYLIQj6TK)
-- **MD5 Checksum**: `a72701458f890000fa351a6d11647034`
+- **MD5 Checksum**: `cd96d17bc6743b1732bc5634383c967a`
 
 Verify the download:
 ```bash
 md5sum openlanev2_lidar.zip
-# Expected: a72701458f890000fa351a6d11647034
+# Expected: cd96d17bc6743b1732bc5634383c967a
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
