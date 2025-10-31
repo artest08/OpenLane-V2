@@ -29,7 +29,7 @@ from ..io import io
 from ...utils import SD_MAP_RANGE, SD_MAP_CATEGORY
 
 
-def collect(root_path : str, data_dict : dict, collection : str, point_interval : int = 1, with_sd_map : bool = False) -> None:
+def collect_merged(root_path : str, data_dict : dict, collection : str, point_interval : int = 1, with_sd_map : bool = False) -> None:
     r"""
     Load meta data of data in data_dict,
     and store in a .pkl with split as file name.
@@ -54,7 +54,7 @@ def collect(root_path : str, data_dict : dict, collection : str, point_interval 
                 for timestamp in timestamps
     ]
     meta = {
-        (split, segment_id, timestamp): io.json_load(f'{root_path}/{split}/{segment_id}/info/{timestamp}.json') \
+        (split, segment_id, timestamp): io.json_load(f'{root_path}/merged/{segment_id}/info/{timestamp}.json') \
             for split, segment_id, timestamp in data_list
     }
 
@@ -68,7 +68,7 @@ def collect(root_path : str, data_dict : dict, collection : str, point_interval 
 
         if with_sd_map:
             split, segment_id, timestamp = identifier
-            sd_map = io.json_load(f'{root_path}/{split}/{segment_id}/sdmap.json')
+            sd_map = io.json_load(f'{root_path}/merged/{segment_id}/sdmap.json')
 
             translation = meta[identifier]['pose']['translation'][:2]
             rotation = meta[identifier]['pose']['rotation'][:2, :2]
