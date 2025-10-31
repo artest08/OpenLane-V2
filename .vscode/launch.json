@@ -1,0 +1,138 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "preprocess_A",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+
+        {
+            "name": "preprocess_A_sd",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-sd/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+
+        {
+            "name": "preprocess_B",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-B/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },
+        
+        {
+            "name": "preprocess_A_ls",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-ls/preprocess-ls.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },
+
+        {
+            "name": "preprocess_B_ls",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-B-ls/preprocess-ls.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },
+        
+        {
+            "name": "preprocess_A_split",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-near/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+        
+        {
+            "name": "link",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+        {
+            "name": "link2",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link2.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+
+        {
+            "name": "json_creator",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/json_creator.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+    ]
+}
