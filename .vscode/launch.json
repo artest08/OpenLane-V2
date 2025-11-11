@@ -90,6 +90,36 @@
             "justMyCode": true,
             "args": []
         },  
+
+        {
+            "name": "preprocess_A_100",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-100/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":86",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+
+        {
+            "name": "preprocess_A_100_disjoint",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-farC-100/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":86",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
         
         {
             "name": "link",
@@ -114,6 +144,21 @@
             "env": {
                 "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
                 "DISPLAY": ":84",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },  
+
+        {
+            "name": "link3",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link3.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":86",
                 "CUDA_VISIBLE_DEVICES": "3"
             },
             "justMyCode": true,
