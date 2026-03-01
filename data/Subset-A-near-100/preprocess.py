@@ -22,7 +22,7 @@
 
 from openlanev2.centerline.io import io
 from openlanev2.centerline.preprocessing import collect_merged
-# Do not forget to link merged_100 folder before running this script.
+# Do not forget to create the merged_100 symlink via link3.py before running this script.
 
 with_sd_map = True  # TODO: include SD Maps as sensor inputs or not
 
@@ -38,4 +38,5 @@ for file in io.os_listdir(root_path):
                 f'{subset}_{split}' if not with_sd_map else f'{subset}_{split}_sd',
                 point_interval=point_interval,
                 with_sd_map=with_sd_map,
+                merged_folder='merged_100',
             )
