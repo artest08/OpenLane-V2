@@ -111,12 +111,77 @@ The long-range annotations live in a separate `full_json_100/` folder (see downl
 
 ### Additional Downloads
 
-The following files are required in addition to the original OpenLane-V2 data:
+All files are hosted in a single [**Google Drive folder**](https://drive.google.com/drive/folders/13ISxHpA1_RrpMcyf-kXkEul-esame_pA).
 
-| File | Description | Google Drive |
+| Zip file | Description | md5 |
 |---|---|---|
-| `test_gt/` | Ground-truth annotations for the test split | *coming soon* |
-| `full_json_100/` | Re-annotated `info/` files for the ±100 m range | *coming soon* |
+| `openlanev2_sA_test_anno.zip` | Ground-truth annotations for the test split (standard ±50 m range) — creates `test_gt/` | `3beaeef0e41590fedebfd9717ca5e590` |
+| `openlanev2_sA_anno_100.zip` | Re-annotated `info/` files for the ±100 m long-range splits — creates `full_json_100/` | `e9ce6d9f1469a8f31eecff544904b09c` |
+| `openlanev2_sA_pkl_files.zip` | **Pre-built pkl files** — skip all steps below if the standard splits are sufficient | `388d3646db826b769a7bb91275981252` |
+
+> [!IMPORTANT]
+> All three zip archives are packaged with the same internal root: `datasets/OpenLane-V2/`.
+
+> [!TIP]
+> If the pre-built pkl files are sufficient for your use case, download only `openlanev2_sA_pkl_files.zip`. In that case, you can skip `openlanev2_sA_test_anno.zip`, `openlanev2_sA_anno_100.zip`, and all steps in **Data Setup** below.
+
+Extract each zip to any temporary location, then move the extracted content into your local dataset root (`/path/to/OpenLane-V2/`):
+```sh
+# Example: EXTRACT_DIR is where you unzipped the files
+EXTRACT_DIR=/path/to/extracted
+
+mv "$EXTRACT_DIR/datasets/OpenLane-V2/test_gt" /path/to/OpenLane-V2/
+mv "$EXTRACT_DIR/datasets/OpenLane-V2/full_json_100" /path/to/OpenLane-V2/
+mv "$EXTRACT_DIR"/datasets/OpenLane-V2/data_dict_subset_A*.pkl /path/to/OpenLane-V2/
+```
+
+<details>
+<summary>📦 Folder structure inside each zip</summary>
+
+```text
+openlanev2_sA_test_anno.zip
+datasets/
+└── OpenLane-V2/
+    └── test_gt/
+        └── ...
+```
+
+```text
+openlanev2_sA_anno_100.zip
+datasets/
+└── OpenLane-V2/
+    └── full_json_100/
+        └── ...
+```
+
+```text
+openlanev2_sA_pkl_files.zip
+datasets/
+└── OpenLane-V2/
+    ├── data_dict_subset_A_100_sd_test.pkl
+    ├── data_dict_subset_A_100_sd_train.pkl
+    ├── data_dict_subset_A_100_sd_val.pkl
+    ├── data_dict_subset_A_farA_100_sd_train.pkl
+    ├── data_dict_subset_A_farA_100_sd_val.pkl
+    ├── data_dict_subset_A_farA_sd_train.pkl
+    ├── data_dict_subset_A_farA_sd_val.pkl
+    ├── data_dict_subset_A_farB_100_sd_train.pkl
+    ├── data_dict_subset_A_farB_100_sd_val.pkl
+    ├── data_dict_subset_A_farB_sd_train.pkl
+    ├── data_dict_subset_A_farB_sd_val.pkl
+    ├── data_dict_subset_A_farC_100_sd_train.pkl
+    ├── data_dict_subset_A_farC_100_sd_val.pkl
+    ├── data_dict_subset_A_farC_sd_train.pkl
+    ├── data_dict_subset_A_farC_sd_val.pkl
+    ├── data_dict_subset_A_near_100_sd_test.pkl
+    ├── data_dict_subset_A_near_100_sd_train.pkl
+    ├── data_dict_subset_A_near_100_sd_val.pkl
+    ├── data_dict_subset_A_near_sd_test.pkl
+    ├── data_dict_subset_A_near_sd_train.pkl
+    └── data_dict_subset_A_near_sd_val.pkl
+```
+
+</details>
 
 ---
 
