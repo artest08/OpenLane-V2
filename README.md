@@ -1,6 +1,18 @@
 > [!IMPORTANT]
 > 🌟 Stay up to date at [opendrivelab.com](https://opendrivelab.com/#news)!
 
+---
+
+> [!NOTE]
+> **This is a community fork** of [OpenLane-V2](https://github.com/OpenDriveLab/OpenLane-V2) that extends the original dataset with **geographically disjoint evaluation splits** and a **long-range (±100 m) benchmark** for road topology understanding.
+> These extensions are introduced in:
+>
+> **TopoMaskV3: 3D Mask Head with Dense Offset and Height Predictions for Road Topology Understanding**
+>
+> 👉 See [**Fork Extension: Disjoint Splits & Long-Range Benchmark**](#fork-extension-disjoint-splits--long-range-benchmark) for details and data setup instructions.
+
+---
+
 <div id="top" align="center">
 
 # OpenLane-V2
@@ -41,6 +53,7 @@ We maintain a [leaderboard](https://opendrivelab.com/challenge2023/#openlane_top
 
 
 ## Table of Contents
+- [Fork Extension: Disjoint Splits & Long-Range Benchmark](#fork-extension-disjoint-splits--long-range-benchmark)
 - [News](#news)
 - [Introducing `OpenLane-V2 Update`](#introducing-openlane-v2-update)
 - [Task and Evaluation](#task-and-evaluation)
@@ -49,6 +62,201 @@ We maintain a [leaderboard](https://opendrivelab.com/challenge2023/#openlane_top
 - [License & Citation](#license--citation)
 - [Related Resources](#related-resources)
 
+
+## Fork Extension: Disjoint Splits & Long-Range Benchmark
+
+### Motivation
+
+Standard evaluation on OpenLane-V2 (Subset-A) uses a random train/val/test split drawn from the same pool of geographic locations.
+This means a model can implicitly **memorize road topology** from training scenes and retrieve it at evaluation time — inflating reported scores by up to **2×** without reflecting true generalization ability.
+
+Our work introduces two orthogonal extensions to expose and address this:
+
+1. **Geographically Disjoint Splits** — train and evaluation sets share no geographic overlap, forcing models to generalize to unseen roads.
+2. **Long-Range (±100 m) Benchmark** — extends the standard ±50 m perception range, revealing how quickly current models degrade beyond their training horizon.
+
+---
+
+### Disjoint Splits
+
+We provide five evaluation splits for Subset-A, each with progressively stricter geographic separation:
+
+| Split | Folder | Geographic overlap | City overlap | Description |
+|---|---|---|---|---|
+| **Original** | `Subset-A` | ✅ Yes | ✅ Yes | Standard OpenLane-V2 split (in-distribution baseline) |
+| **Near** | `Subset-A-near` | ❌ No | ✅ Yes | Train/val come from the same cities but non-overlapping locations |
+| **FarA** | `Subset-A-farA` | ❌ No | ❌ No | Train and val are from fully disjoint city sets |
+| **FarB** | `Subset-A-farB` | ❌ No | ❌ No | Alternative city-disjoint partition |
+| **FarC** | `Subset-A-farC` | ❌ No | ❌ No | Alternative city-disjoint partition |
+
+> **Key finding:** Models that score ~43 OLS on the Original split drop to ~20 OLS on the disjoint splits, revealing that a significant portion of reported performance is attributable to geographic memorization rather than genuine road topology understanding.
+
+---
+
+### Long-Range Splits
+
+Each disjoint split above has a corresponding **±100 m** variant, annotated with a wider perception range:
+
+| Standard split | Long-range split |
+|---|---|
+| `Subset-A` | `Subset-A-100` |
+| `Subset-A-near` | `Subset-A-near-100` |
+| `Subset-A-farA` | `Subset-A-farA-100` |
+| `Subset-A-farB` | `Subset-A-farB-100` |
+| `Subset-A-farC` | `Subset-A-farC-100` |
+
+The long-range annotations live in a separate `full_json_100/` folder (see download instructions below) because the annotation pipeline was re-run with an extended range parameter.
+
+---
+
+### Additional Downloads
+
+All files are hosted in a single [**Google Drive folder**](https://drive.google.com/drive/folders/13ISxHpA1_RrpMcyf-kXkEul-esame_pA).
+
+| Zip file | Description | md5 |
+|---|---|---|
+| `openlanev2_sA_test_anno.zip` | Ground-truth annotations for the test split (standard ±50 m range) — creates `test_gt/` | `3beaeef0e41590fedebfd9717ca5e590` |
+| `openlanev2_sA_anno_100.zip` | Re-annotated `info/` files for the ±100 m long-range splits — creates `full_json_100/` | `e9ce6d9f1469a8f31eecff544904b09c` |
+| `openlanev2_sA_pkl_files.zip` | **Pre-built pkl files** — skip all steps below if the standard splits are sufficient | `388d3646db826b769a7bb91275981252` |
+
+> [!IMPORTANT]
+> All three zip archives are packaged with the same internal root: `datasets/OpenLane-V2/`.
+
+> [!TIP]
+> If the pre-built pkl files are sufficient for your use case, download only `openlanev2_sA_pkl_files.zip`. In that case, you can skip `openlanev2_sA_test_anno.zip`, `openlanev2_sA_anno_100.zip`, and all steps in **Data Setup** below.
+
+Extract each zip to any temporary location, then move the extracted content into your local dataset root (`/path/to/OpenLane-V2/`):
+```sh
+# Example: EXTRACT_DIR is where you unzipped the files
+EXTRACT_DIR=/path/to/extracted
+
+mv "$EXTRACT_DIR/datasets/OpenLane-V2/test_gt" /path/to/OpenLane-V2/
+mv "$EXTRACT_DIR/datasets/OpenLane-V2/full_json_100" /path/to/OpenLane-V2/
+mv "$EXTRACT_DIR"/datasets/OpenLane-V2/data_dict_subset_A*.pkl /path/to/OpenLane-V2/
+```
+
+<details>
+<summary>📦 Folder structure inside each zip</summary>
+
+```text
+openlanev2_sA_test_anno.zip
+datasets/
+└── OpenLane-V2/
+    └── test_gt/
+        └── ...
+```
+
+```text
+openlanev2_sA_anno_100.zip
+datasets/
+└── OpenLane-V2/
+    └── full_json_100/
+        └── ...
+```
+
+```text
+openlanev2_sA_pkl_files.zip
+datasets/
+└── OpenLane-V2/
+    ├── data_dict_subset_A_100_sd_test.pkl
+    ├── data_dict_subset_A_100_sd_train.pkl
+    ├── data_dict_subset_A_100_sd_val.pkl
+    ├── data_dict_subset_A_farA_100_sd_train.pkl
+    ├── data_dict_subset_A_farA_100_sd_val.pkl
+    ├── data_dict_subset_A_farA_sd_train.pkl
+    ├── data_dict_subset_A_farA_sd_val.pkl
+    ├── data_dict_subset_A_farB_100_sd_train.pkl
+    ├── data_dict_subset_A_farB_100_sd_val.pkl
+    ├── data_dict_subset_A_farB_sd_train.pkl
+    ├── data_dict_subset_A_farB_sd_val.pkl
+    ├── data_dict_subset_A_farC_100_sd_train.pkl
+    ├── data_dict_subset_A_farC_100_sd_val.pkl
+    ├── data_dict_subset_A_farC_sd_train.pkl
+    ├── data_dict_subset_A_farC_sd_val.pkl
+    ├── data_dict_subset_A_near_100_sd_test.pkl
+    ├── data_dict_subset_A_near_100_sd_train.pkl
+    ├── data_dict_subset_A_near_100_sd_val.pkl
+    ├── data_dict_subset_A_near_sd_test.pkl
+    ├── data_dict_subset_A_near_sd_train.pkl
+    └── data_dict_subset_A_near_sd_val.pkl
+```
+
+</details>
+
+---
+
+### Data Setup
+
+Follow these steps **after** downloading the original OpenLane-V2 dataset and the additional files above.
+
+> [!TIP]
+> Replace `/path/to/OpenLane-V2` in every command below with the actual path where your dataset lives, e.g. `~/datasets/OpenLane-V2`.
+
+**Step 1 — Rename the original test split**
+
+The official `test/` folder lacks ground-truth annotations. Rename it first:
+```sh
+mv /path/to/OpenLane-V2/test /path/to/OpenLane-V2/test_orig
+```
+
+**Step 2 — Create `test/` with ground-truth annotations**
+
+Merges sensor data from `test_orig/` with annotations from the downloaded `test_gt/`:
+```sh
+python openlanev2/centerline/preprocessing/link_test.py \
+    --data_root /path/to/OpenLane-V2
+```
+
+**Step 3 — Create `merged/` for standard-range splits**
+
+Flattens all `train/`, `val/`, `test/` scenarios into a single lookup directory:
+```sh
+python openlanev2/centerline/preprocessing/link_merged.py \
+    --data_root /path/to/OpenLane-V2
+```
+Then create a symlink inside each standard-range split folder so `preprocess.py` can find the data:
+```sh
+# Replace /path/to/OpenLane-V2 with your actual dataset root
+MERGED=/path/to/OpenLane-V2/merged
+ln -s $MERGED data/Subset-A-near/merged
+ln -s $MERGED data/Subset-A-farA/merged
+ln -s $MERGED data/Subset-A-farB/merged
+ln -s $MERGED data/Subset-A-farC/merged
+```
+
+**Step 4 (±100 m only) — Create `merged_100/`**
+
+Only required if you want to use the long-range splits:
+```sh
+python openlanev2/centerline/preprocessing/link_merged_100.py \
+    --data_root /path/to/OpenLane-V2
+```
+Then symlink it into each long-range split folder:
+```sh
+# Replace /path/to/OpenLane-V2 with your actual dataset root
+MERGED100=/path/to/OpenLane-V2/merged_100
+ln -s $MERGED100 data/Subset-A-100/merged_100
+ln -s $MERGED100 data/Subset-A-near-100/merged_100
+ln -s $MERGED100 data/Subset-A-farA-100/merged_100
+ln -s $MERGED100 data/Subset-A-farB-100/merged_100
+ln -s $MERGED100 data/Subset-A-farC-100/merged_100
+```
+
+**Step 5 — Generate pickle files**
+
+Run `preprocess.py` from the **repo root** for each split you want to use:
+```sh
+# Example: Near disjoint split (standard range)
+python data/Subset-A-near/preprocess.py
+
+# Example: FarA split at ±100 m range
+python data/Subset-A-farA-100/preprocess.py
+```
+Each script produces `.pkl` files inside its own `data/Subset-A-*/` folder, ready for model training and evaluation.
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+---
 
 ## News
 

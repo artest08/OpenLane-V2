@@ -29,7 +29,7 @@ from ..io import io
 from ...utils import SD_MAP_RANGE, SD_MAP_CATEGORY
 
 
-def collect(root_path : str, data_dict : dict, collection : str, point_interval : int = 1, with_sd_map : bool = False) -> None:
+def collect_merged(root_path : str, data_dict : dict, collection : str, point_interval : int = 1, with_sd_map : bool = False, merged_folder : str = 'merged') -> None:
     r"""
     Load meta data of data in data_dict,
     and store in a .pkl with split as file name.
@@ -46,6 +46,9 @@ def collect(root_path : str, data_dict : dict, collection : str, point_interval 
         not subsampling as default.
     with_sd_map : bool
         Whether include SD Map for the SD Map as Prior Expansion.
+    merged_folder : str
+        Name of the merged data folder, defaults to 'merged'.
+        Use 'merged_100' for the long-range (±100 m) splits.
 
     """
     data_list = [(split, segment_id, timestamp.split('.')[0]) \
@@ -54,7 +57,7 @@ def collect(root_path : str, data_dict : dict, collection : str, point_interval 
                 for timestamp in timestamps
     ]
     meta = {
-        (split, segment_id, timestamp): io.json_load(f'{root_path}/{split}/{segment_id}/info/{timestamp}.json') \
+        (split, segment_id, timestamp): io.json_load(f'{root_path}/{merged_folder}/{segment_id}/info/{timestamp}.json') \
             for split, segment_id, timestamp in data_list
     }
 
@@ -68,7 +71,7 @@ def collect(root_path : str, data_dict : dict, collection : str, point_interval 
 
         if with_sd_map:
             split, segment_id, timestamp = identifier
-            sd_map = io.json_load(f'{root_path}/{split}/{segment_id}/sdmap.json')
+            sd_map = io.json_load(f'{root_path}/{merged_folder}/{segment_id}/sdmap.json')
 
             translation = meta[identifier]['pose']['translation'][:2]
             rotation = meta[identifier]['pose']['rotation'][:2, :2]
