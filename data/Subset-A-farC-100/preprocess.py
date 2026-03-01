@@ -1,5 +1,5 @@
 # ==============================================================================
-# Binaries and/or source for the following packages or projects 
+# Binaries and/or source for the following packages or projects
 # are presented under one or more of the following open source licenses:
 # preprocess.py    The OpenLane-V2 Dataset Authors    Apache License, Version 2.0
 #
@@ -26,7 +26,7 @@ from openlanev2.centerline.preprocessing import collect_merged
 
 with_sd_map = True  # TODO: include SD Maps as sensor inputs or not
 
-root_path = 'data/Subset-A-near-100'
+root_path = 'data/Subset-A-farC-100'
 for file in io.os_listdir(root_path):
     if file.endswith('json'):
         subset = file.split('.')[0]

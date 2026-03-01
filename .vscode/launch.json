@@ -119,8 +119,53 @@
             },
             "justMyCode": true,
             "args": []
-        },  
-        
+        },
+
+        {
+            "name": "preprocess_A_farA_100",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-farA-100/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":86",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },
+
+        {
+            "name": "preprocess_A_farB_100",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-farB-100/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":86",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },
+
+        {
+            "name": "preprocess_A_farC_100",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/data/Subset-A-farC-100/preprocess.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
+                "DISPLAY": ":86",
+                "CUDA_VISIBLE_DEVICES": "3"
+            },
+            "justMyCode": true,
+            "args": []
+        },
+
         {
             "name": "link_test (step 1: create test/ from test_orig + test_gt)",
             "type": "debugpy",

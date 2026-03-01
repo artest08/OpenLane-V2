@@ -105,9 +105,9 @@ def create_merged_100(data_root: str) -> None:
                 print(f'    Warning: info/ not found in full_json_100/{split_name}/{scenario_name}')
 
     print('\nDone.')
-    print(f'Create symlinks in your repo data/ folders, for example:')
-    print(f'  ln -s {merged_100_dir}  <repo>/data/Subset-A-100/merged_100')
-    print(f'  ln -s {merged_100_dir}  <repo>/data/Subset-A-near-100/merged_100')
+    print(f'Create a symlink inside each ±100 m data/ folder pointing to {merged_100_dir}:')
+    for subset in ['Subset-A-100', 'Subset-A-near-100', 'Subset-A-farA-100', 'Subset-A-farB-100', 'Subset-A-farC-100']:
+        print(f'  ln -s {merged_100_dir}  <repo>/data/{subset}/merged_100')
     print(f'Then run the corresponding preprocess.py scripts.')
 
 

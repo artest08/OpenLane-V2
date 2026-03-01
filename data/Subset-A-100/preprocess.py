@@ -22,7 +22,7 @@
 
 from openlanev2.centerline.io import io
 from openlanev2.centerline.preprocessing import collect_merged
-# Do not forget to create the merged_100 symlink via link3.py before running this script.
+# Do not forget to create merged_100/ via link_merged_100.py and symlink it here before running this script.
 
 with_sd_map = True  # TODO: include SD Maps as sensor inputs or not
 
