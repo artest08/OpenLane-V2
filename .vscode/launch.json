@@ -122,10 +122,10 @@
         },  
         
         {
-            "name": "link",
+            "name": "link_test (step 1: create test/ from test_orig + test_gt)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link.py",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link_test.py",
             "console": "integratedTerminal",
             "env": {
                 "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
@@ -133,13 +133,13 @@
                 "CUDA_VISIBLE_DEVICES": "3"
             },
             "justMyCode": true,
-            "args": []
-        },  
+            "args": ["--data_root", "/path/to/your/OpenLane-V2"]
+        },
         {
-            "name": "link2",
+            "name": "link_merged (step 2: create merged/ from train+val+test)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link2.py",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link_merged.py",
             "console": "integratedTerminal",
             "env": {
                 "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
@@ -147,14 +147,14 @@
                 "CUDA_VISIBLE_DEVICES": "3"
             },
             "justMyCode": true,
-            "args": []
-        },  
+            "args": ["--data_root", "/path/to/your/OpenLane-V2"]
+        },
 
         {
-            "name": "link3",
+            "name": "link_merged_100 (step 3: create merged_100/ for ±100m splits)",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link3.py",
+            "program": "${workspaceFolder}/openlanev2/centerline/preprocessing/link_merged_100.py",
             "console": "integratedTerminal",
             "env": {
                 "PYTHONPATH": "$PYTHONPATH:${workspaceFolder}",
@@ -162,8 +162,8 @@
                 "CUDA_VISIBLE_DEVICES": "3"
             },
             "justMyCode": true,
-            "args": []
-        },  
+            "args": ["--data_root", "/path/to/your/OpenLane-V2"]
+        },
 
         {
             "name": "json_creator",
